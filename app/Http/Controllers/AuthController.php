@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\Validation\Rule;
 
+use App\Http\Requests\RegisterRequest;
+
 class AuthController extends Controller
 {
     /**
@@ -36,7 +38,7 @@ class AuthController extends Controller
     {
         $credentials = request(['email', 'password']);
 
-        if (! $token = auth()->attempt($credentials)) {
+        if (!$token = auth()->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
@@ -84,27 +86,27 @@ class AuthController extends Controller
      */
     protected function respondWithToken($token)
     {
+        $loggedUser = auth()->user();
+
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60
+            'expires_in' => auth()->factory()->getTTL() * 60,
+            'user' => [
+                'name' => $loggedUser->name,
+                'email' => $loggedUser->email
+            ]
         ]);
     }
 
-    public function register(Request $request){
-
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required' ,'confirmed', Rules\Password::defaults()],
-        ]);
-
+    public function register(RegisterRequest $request){
+        
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
 
-        return response()->json($user,201);
+        return response()->json($user, 201);
     }
 }
