@@ -26,6 +26,9 @@ class GenreSeeder extends Seeder
             ['name'=>'Romance', 'created_at'=>date("Y-m-d H:i:s")],
             ['name'=>'Thriller', 'created_at'=>date("Y-m-d H:i:s")],
             ['name'=>'Western', 'created_at'=>date("Y-m-d H:i:s")],
+            ['name'=>'Sci-Fi', 'created_at'=>date("Y-m-d H:i:s")],
+            ['name'=>'Crime', 'created_at'=>date("Y-m-d H:i:s")],
+            ['name'=>'Adventure', 'created_at'=>date("Y-m-d H:i:s")],
         ]);
     }
 }

@@ -14,11 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('movies', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string('title');
             $table->string('description');
             $table->string('cover_image');
-            $table->foreignId('genre_id');
+            //$table->foreignId('genre_id');
             $table->timestamps();
         });
     }
