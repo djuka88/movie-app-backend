@@ -71,6 +71,78 @@ class MovieSeeder extends Seeder
                 'cover_image' => 'https://m.media-amazon.com/images/M/MV5BNjJlYmNkZGItM2NhYy00MjlmLTk5NmQtNjg1NmM2ODU4OTMwXkEyXkFqcGdeQXVyMjUzOTY1NTc@._V1_.jpg',
                 'created_at' => date("Y-m-d H:i:s")
             ],
+            [
+                'title' => 'Schindler\'s List',
+                'description' => 'In German-occupied Poland during World War II, industrialist Oskar Schindler gradually becomes concerned for his Jewish workforce after witnessing their persecution by the Nazis.',
+                'cover_image' => 'https://m.media-amazon.com/images/M/MV5BNDE4OTMxMTctNmRhYy00NWE2LTg3YzItYTk3M2UwOTU5Njg4XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg',
+                'created_at' => date("Y-m-d H:i:s")
+            ],
+            [
+                'title' => 'Star Wars',
+                'description' => 'Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee and two droids to save the galaxy from the Empire\'s world-destroying battle station, while also attempting to rescue Princess Leia from the mysterious Darth Vader.',
+                'cover_image' => 'https://m.media-amazon.com/images/M/MV5BNzg4MjQxNTQtZmI5My00YjMwLWJlMjUtMmJlY2U2ZWFlNzY1XkEyXkFqcGdeQXVyODk4OTc3MTY@._V1_.jpg',
+                'created_at' => date("Y-m-d H:i:s")
+            ],
+            [
+                'title' => 'Some Like It Hot',
+                'description' => 'After two male musicians witness a mob hit, they flee the state in an all-female band disguised as women, but further complications set in.',
+                'cover_image' => 'https://m.media-amazon.com/images/M/MV5BNzAyOGIxYjAtMGY2NC00ZTgyLWIwMWEtYzY0OWQ4NDFjOTc5XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg',
+                'created_at' => date("Y-m-d H:i:s")
+            ],
+            [
+                'title' => 'Taxi Driver',
+                'description' => 'A mentally unstable veteran works as a nighttime taxi driver in New York City, where the perceived decadence and sleaze fuels his urge for violent action.',
+                'cover_image' => 'https://m.media-amazon.com/images/M/MV5BM2M1MmVhNDgtNmI0YS00ZDNmLTkyNjctNTJiYTQ2N2NmYzc2XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg',
+                'created_at' => date("Y-m-d H:i:s")
+            ],
+            [
+                'title' => 'Rear Window',
+                'description' => 'A wheelchair-bound photographer spies on his neighbors from his Greenwich Village courtyard apartment window, and becomes convinced one of them has committed murder, despite the skepticism of his fashion-model girlfriend.',
+                'cover_image' => 'https://m.media-amazon.com/images/M/MV5BNGUxYWM3M2MtMGM3Mi00ZmRiLWE0NGQtZjE5ODI2OTJhNTU0XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_.jpg',
+                'created_at' => date("Y-m-d H:i:s")
+            ],
+            [
+                'title' => 'The Lord of the Rings: The Fellowship of the Ring',
+                'description' => 'A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring and save Middle-earth from the Dark Lord Sauron.',
+                'cover_image' => 'https://m.media-amazon.com/images/M/MV5BN2EyZjM3NzUtNWUzMi00MTgxLWI0NTctMzY4M2VlOTdjZWRiXkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_.jpg',
+                'created_at' => date("Y-m-d H:i:s")
+            ],
+            [
+                'title' => '2001: A Space Odyssey',
+                'description' => 'The Monoliths push humanity to reach for the stars; after their discovery in Africa generations ago, the mysterious objects lead mankind on an awesome journey to Jupiter, with the help of H.A.L. 9000: the world\'s greatest supercomputer.',
+                'cover_image' => 'https://m.media-amazon.com/images/M/MV5BMmNlYzRiNDctZWNhMi00MzI4LThkZTctMTUzMmZkMmFmNThmXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg',
+                'created_at' => date("Y-m-d H:i:s")
+            ],
+            [
+                'title' => 'Goodfellas',
+                'description' => 'The story of Henry Hill and his life in the mob, covering his relationship with his wife Karen Hill and his mob partners Jimmy Conway and Tommy DeVito in the Italian-American crime syndicate.',
+                'cover_image' => 'https://m.media-amazon.com/images/M/MV5BY2NkZjEzMDgtN2RjYy00YzM1LWI4ZmQtMjIwYjFjNmI3ZGEwXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg',
+                'created_at' => date("Y-m-d H:i:s")
+            ],
+            [
+                'title' => 'Alien',
+                'description' => 'The crew of a commercial spacecraft encounter a deadly lifeform after investigating an unknown transmission.',
+                'cover_image' => 'https://m.media-amazon.com/images/M/MV5BOGQzZTBjMjQtOTVmMS00NGE5LWEyYmMtOGQ1ZGZjNmRkYjFhXkEyXkFqcGdeQXVyMjUzOTY1NTc@._V1_.jpg',
+                'created_at' => date("Y-m-d H:i:s")
+            ],
+            [
+                'title' => '365 Days: This Day',
+                'description' => 'Laura and Massimo are back and stronger than ever. But Massimo\'s family ties and a mysterious man bidding for Laura\'s heart complicate the lovers\' lives.',
+                'cover_image' => 'https://m.media-amazon.com/images/M/MV5BMGZmNDg1NDUtM2I3MC00Mjg1LTgyZWUtZmYwYTVjNmRmMDQ0XkEyXkFqcGdeQXVyMTUyMzk0ODY3._V1_.jpg',
+                'created_at' => date("Y-m-d H:i:s")
+            ],
+            [
+                'title' => 'Forrest Gump',
+                'description' => 'The presidencies of Kennedy and Johnson, the Vietnam War, the Watergate scandal and other historical events unfold from the perspective of an Alabama man with an IQ of 75, whose only desire is to be reunited with his childhood sweetheart.',
+                'cover_image' => 'https://m.media-amazon.com/images/M/MV5BNWIwODRlZTUtY2U3ZS00Yzg1LWJhNzYtMmZiYmEyNmU1NjMzXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_.jpg',
+                'created_at' => date("Y-m-d H:i:s")
+            ],
+            [
+                'title' => 'The Silence of the Lambs',
+                'description' => 'A young F.B.I. cadet must receive the help of an incarcerated and manipulative cannibal killer to help catch another serial killer, a madman who skins his victims.',
+                'cover_image' => 'https://m.media-amazon.com/images/M/MV5BNjNhZTk0ZmEtNjJhMi00YzFlLWE1MmEtYzM1M2ZmMGMwMTU4XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg',
+                'created_at' => date("Y-m-d H:i:s")
+            ],
         ]);
     }
 }
