@@ -21,7 +21,7 @@ class MovieController extends Controller
         $searchFilter = $request->get('search');
         $genresFilter = $request->get('genres');
 
-        $movies = Movie::where('title','LIKE','%'.$searchFilter.'%');
+        $movies = Movie::with('reactions')->where('title','LIKE','%'.$searchFilter.'%');
 
         if($genresFilter){
             $movies = $movies->whereHas('genres', function($q) use($genresFilter) {
@@ -29,7 +29,12 @@ class MovieController extends Controller
             });
         }
 
-        return $movies=$movies->paginate(10);
+        $movies=$movies->paginate(10);
+
+        Log::info($movies);
+        foreach ($movies as $aa) {
+            Log::info($aa);
+        }
     }
 
     public function store(MovieRequest $request){
@@ -46,5 +51,13 @@ class MovieController extends Controller
         $movie = Movie::with('genres:name')->findOrFail($id);
 
         return $movie;
+    }
+
+    public function like($id){
+
+    }
+
+    public function dislike($id){
+
     }
 }

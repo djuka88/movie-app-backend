@@ -20,6 +20,10 @@ class Movie extends Model
     public function genres(){
         return $this->belongsToMany(Genre::class);
     }
+
+    public function reactions(){
+        return $this->hasMany(Reaction::class);
+    }
 }
 
 
