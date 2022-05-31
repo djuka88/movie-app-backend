@@ -17,22 +17,20 @@ class MovieController extends Controller
         $this->middleware('auth:api');
     }
 
-    public function index(FilterRequest $request){
+    public function index(FilterRequest $request)
+    {
         $searchFilter = $request->get('search');
         $genresFilter = $request->get('genres');
 
-        $movies = Movie::where('title','LIKE','%'.$searchFilter.'%');
+        $movies = Movie::searchFilter($searchFilter)
+            ->genresFilter($genresFilter)
+            ->paginate(10);
 
-        if($genresFilter){
-            $movies = $movies->whereHas('genres', function($q) use($genresFilter) {
-                $q->whereIn('id', $genresFilter);
-            });
-        }
-
-        return $movies=$movies->paginate(10);
+        return $movies;
     }
 
-    public function store(MovieRequest $request){
+    public function store(MovieRequest $request)
+    {
         $movie = Movie::create([
             'title' => $request->title,
             'cover_image' => $request->cover_image,
@@ -42,7 +40,8 @@ class MovieController extends Controller
         $movie->genres()->attach($request->genre_ids);
     }
 
-    public function show($id){
+    public function show($id)
+    {
         $movie = Movie::with('genres:name')->findOrFail($id);
 
         return $movie;
