@@ -9,6 +9,28 @@ class Movie extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'title',
+        'cover_image',
+        'description',
+    ];
+
+    protected $hidden = ['pivot'];
+
+    public function scopeSearchFilter($query, $searchFilter)
+    {
+        return $query->where('title', 'LIKE', '%'.$searchFilter.'%');
+    }
+
+    public function scopeGenresFilter($query, $genresFilter)
+    {
+        if ($genresFilter) {
+            return $query->whereHas('genres', function ($q) use ($genresFilter) {
+                $q->whereIn('id', $genresFilter);
+            });
+        }
+    }
+
     public function genres(){
         return $this->belongsToMany(Genre::class);
     }
