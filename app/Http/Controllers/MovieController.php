@@ -17,24 +17,19 @@ class MovieController extends Controller
         $this->middleware('auth:api');
     }
 
-    public function index(FilterRequest $request){
+    public function index(FilterRequest $request)
+    {
         $searchFilter = $request->get('search');
         $genresFilter = $request->get('genres');
 
-        $movies = Movie::with('reactions')->where('title','LIKE','%'.$searchFilter.'%');
+        $movies = Movie::
+            searchFilter($searchFilter)
+            ->genresFilter($genresFilter)
+            ->countLikesDislikes()
+            ->userReaction()
+            ->paginate(10);
 
-        if($genresFilter){
-            $movies = $movies->whereHas('genres', function($q) use($genresFilter) {
-                $q->whereIn('id', $genresFilter);
-            });
-        }
-
-        $movies=$movies->paginate(10);
-
-        Log::info($movies);
-        foreach ($movies as $aa) {
-            Log::info($aa);
-        }
+        return $movies;
     }
 
     public function store(MovieRequest $request){
