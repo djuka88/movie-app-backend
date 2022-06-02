@@ -45,7 +45,7 @@ class Movie extends Model
     public function scopeUserReaction($query)
     {
         return $query->with(['reactions' => function ($query){
-                $query->firstWhere('user_id',Auth::id());
+                $query->where('user_id',Auth::id());
             }]);
     }
 

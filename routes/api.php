@@ -26,8 +26,7 @@ Route::get('movies/{id}',[MovieController::class, 'show']);
 Route::get('movies',[MovieController::class, 'index']);
 Route::post('movies',[MovieController::class, 'store']);
 Route::get('genres',[GenreController::class, 'index']);
-Route::get('like/{id}',[MovieController::class, 'like']);
-Route::get('dislike/{id}',[MovieController::class, 'dislike']);
+Route::post('movies/react',[MovieController::class, 'react']);
 
 Route::group([
     'middleware' => 'api',

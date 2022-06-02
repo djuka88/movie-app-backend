@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Movie;
+use App\Models\Reaction;
 use App\Http\Requests\MovieRequest;
 use App\Http\Requests\FilterRequest;
+use App\Http\Requests\ReactRequest;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Facades\Log;
 use DB;
@@ -43,16 +46,33 @@ class MovieController extends Controller
     }
 
     public function show($id){
-        $movie = Movie::with('genres:name')->findOrFail($id);
+        $movie = Movie::with('genres:name')->countLikesDislikes()->findOrFail($id);
 
         return $movie;
     }
 
-    public function like($id){
+    public function react(ReactRequest $request){
+        $userReaction = $request->reaction;
+        $movie_id = $request->id;
 
-    }
+        $reactionFromDb = Reaction::where('user_id',Auth::id())->where('movie_id',$movie_id)->first();
 
-    public function dislike($id){
+        if(!$reactionFromDb){
+            Reaction::create([
+                'user_id' => Auth::id(),
+                'movie_id' => $movie_id,
+                'like' => $userReaction,
+            ]);
 
+            return;
+        }
+
+        if($reactionFromDb->like == $userReaction){
+            $reactionFromDb->delete();
+        }
+        else{
+            $reactionFromDb->like = $userReaction;
+            $reactionFromDb->save();
+        }
     }
 }
