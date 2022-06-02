@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('description');
             $table->string('cover_image');
-            //$table->foreignId('genre_id');
+            $table->string('times_visited');
             $table->timestamps();
         });
     }

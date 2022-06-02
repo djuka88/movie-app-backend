@@ -15,6 +15,7 @@ class Movie extends Model
         'title',
         'cover_image',
         'description',
+        'times_visited',
     ];
 
     protected $hidden = ['pivot'];

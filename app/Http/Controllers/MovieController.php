@@ -48,6 +48,9 @@ class MovieController extends Controller
     public function show($id){
         $movie = Movie::with('genres:name')->countLikesDislikes()->findOrFail($id);
 
+        $movie->times_visited +=1; 
+        $movie->save();
+
         return $movie;
     }
 
