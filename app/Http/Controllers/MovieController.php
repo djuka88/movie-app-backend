@@ -32,6 +32,17 @@ class MovieController extends Controller
             ->userReaction()
             ->paginate(10);
 
+        foreach($movies as $movie){
+            if (count($movie->reactions)>0) {
+                $newValue = $movie->reactions[0]->like;
+                unset($movie->reactions);
+                $movie->reaction=$newValue;
+            }
+            else{
+                unset($movie->reactions);
+            }
+        }
+
         return $movies;
     }
 
