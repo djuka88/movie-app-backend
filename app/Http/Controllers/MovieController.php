@@ -25,8 +25,7 @@ class MovieController extends Controller
         $searchFilter = $request->get('search');
         $genresFilter = $request->get('genres');
 
-        $movies = Movie::
-            searchFilter($searchFilter)
+        $movies = Movie::searchFilter($searchFilter)
             ->genresFilter($genresFilter)
             ->countLikesDislikes()
             ->userReaction()
@@ -80,8 +79,7 @@ class MovieController extends Controller
 
         if($reactionFromDb->like == $userReaction){
             $reactionFromDb->delete();
-        }
-        else{
+        }else{
             $reactionFromDb->like = $userReaction;
             $reactionFromDb->save();
         }

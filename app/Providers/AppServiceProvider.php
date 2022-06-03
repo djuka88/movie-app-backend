@@ -3,8 +3,6 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Log;
-use DB;
 
 class AppServiceProvider extends ServiceProvider
 {
