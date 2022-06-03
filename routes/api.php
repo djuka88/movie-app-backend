@@ -27,6 +27,7 @@ Route::get('movies',[MovieController::class, 'index']);
 Route::post('movies',[MovieController::class, 'store']);
 Route::get('genres',[GenreController::class, 'index']);
 Route::post('movies/react',[MovieController::class, 'react']);
+Route::post('movies/comment',[MovieController::class, 'comment']);
 
 Route::group([
     'middleware' => 'api',

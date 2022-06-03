@@ -8,6 +8,7 @@ use App\Models\Reaction;
 use App\Http\Requests\MovieRequest;
 use App\Http\Requests\FilterRequest;
 use App\Http\Requests\ReactRequest;
+use App\Http\Requests\CommentRequest;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Facades\Log;
@@ -25,8 +26,7 @@ class MovieController extends Controller
         $searchFilter = $request->get('search');
         $genresFilter = $request->get('genres');
 
-        $movies = Movie::
-            searchFilter($searchFilter)
+        $movies = Movie::searchFilter($searchFilter)
             ->genresFilter($genresFilter)
             ->countLikesDislikes()
             ->userReaction()
@@ -35,7 +35,8 @@ class MovieController extends Controller
         return $movies;
     }
 
-    public function store(MovieRequest $request){
+    public function store(MovieRequest $request)
+    {
         $movie = Movie::create([
             'title' => $request->title,
             'cover_image' => $request->cover_image,
@@ -45,22 +46,27 @@ class MovieController extends Controller
         $movie->genres()->attach($request->genre_ids);
     }
 
-    public function show($id){
-        $movie = Movie::with('genres:name')->countLikesDislikes()->findOrFail($id);
+    public function show($id)
+    {
+        $movie = Movie::with('genres:name')
+            ->with('comments:movie_id,text')
+            ->countLikesDislikes()
+            ->findOrFail($id);
 
-        $movie->times_visited +=1; 
+        $movie->times_visited +=1;
         $movie->save();
 
         return $movie;
     }
 
-    public function react(ReactRequest $request){
+    public function react(ReactRequest $request)
+    {
         $userReaction = $request->reaction;
         $movie_id = $request->id;
 
-        $reactionFromDb = Reaction::where('user_id',Auth::id())->where('movie_id',$movie_id)->first();
+        $reactionFromDb = Reaction::where('user_id', Auth::id())->where('movie_id', $movie_id)->first();
 
-        if(!$reactionFromDb){
+        if (!$reactionFromDb) {
             Reaction::create([
                 'user_id' => Auth::id(),
                 'movie_id' => $movie_id,
@@ -70,12 +76,15 @@ class MovieController extends Controller
             return;
         }
 
-        if($reactionFromDb->like == $userReaction){
+        if ($reactionFromDb->like == $userReaction) {
             $reactionFromDb->delete();
-        }
-        else{
+        } else {
             $reactionFromDb->like = $userReaction;
             $reactionFromDb->save();
         }
+    }
+
+    public function comment(CommentRequest $request){
+        Log::info($request);
     }
 }

@@ -57,7 +57,8 @@ class Movie extends Model
     public function reactions(){
         return $this->hasMany(Reaction::class);
     }
+
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
 }
-
-
-//$this->belongsToMany(Role::class, 'role_user_table', 'user_id', 'role_id');
