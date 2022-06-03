@@ -31,13 +31,12 @@ class MovieController extends Controller
             ->userReaction()
             ->paginate(10);
 
-        foreach($movies as $movie){
+        foreach ($movies as $movie) {
             if (count($movie->reactions)>0) {
                 $newValue = $movie->reactions[0]->like;
                 unset($movie->reactions);
                 $movie->reaction=$newValue;
-            }
-            else{
+            } else {
                 unset($movie->reactions);
             }
         }
@@ -45,7 +44,8 @@ class MovieController extends Controller
         return $movies;
     }
 
-    public function store(MovieRequest $request){
+    public function store(MovieRequest $request)
+    {
         $movie = Movie::create([
             'title' => $request->title,
             'cover_image' => $request->cover_image,
@@ -55,19 +55,21 @@ class MovieController extends Controller
         $movie->genres()->attach($request->genre_ids);
     }
 
-    public function show($id){
+    public function show($id)
+    {
         $movie = Movie::with('genres:name')->countLikesDislikes()->findOrFail($id);
 
         return $movie;
     }
 
-    public function react(ReactRequest $request){
+    public function react(ReactRequest $request)
+    {
         $userReaction = $request->reaction;
         $movie_id = $request->id;
 
-        $reactionFromDb = Reaction::where('user_id',Auth::id())->where('movie_id',$movie_id)->first();
+        $reactionFromDb = Reaction::where('user_id', Auth::id())->where('movie_id', $movie_id)->first();
 
-        if(!$reactionFromDb){
+        if (!$reactionFromDb) {
             Reaction::create([
                 'user_id' => Auth::id(),
                 'movie_id' => $movie_id,
@@ -77,9 +79,9 @@ class MovieController extends Controller
             return;
         }
 
-        if($reactionFromDb->like == $userReaction){
+        if ($reactionFromDb->like == $userReaction) {
             $reactionFromDb->delete();
-        }else{
+        } else {
             $reactionFromDb->like = $userReaction;
             $reactionFromDb->save();
         }
