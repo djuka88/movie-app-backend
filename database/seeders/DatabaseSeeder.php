@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             GenreMovieSeeder::class,
             ReactionSeeder::class,
             CommentSeeder::class,
+            WatchListSeeder::class
         ]);
     }
 }

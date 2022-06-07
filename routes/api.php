@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\GenreController;
+use App\Http\Controllers\WatchListController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,11 @@ Route::get('genres',[GenreController::class, 'index']);
 Route::post('movies/react',[MovieController::class, 'react']);
 Route::post('movies/{id}/comments',[MovieController::class, 'comment']);
 Route::get('movies/{id}/comments',[MovieController::class, 'comments']);
+
+Route::get('watchlist',[WatchListController::class, 'index']);
+Route::put('watchlist',[WatchListController::class, 'update']);
+Route::delete('watchlist/{id}',[WatchListController::class, 'destroy']);
+Route::post('watchlist',[WatchListController::class, 'store']);
 
 Route::group([
     'middleware' => 'api',

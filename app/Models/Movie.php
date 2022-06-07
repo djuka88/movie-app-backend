@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 
+use Log;
+
 class Movie extends Model
 {
     use HasFactory;
@@ -50,15 +52,30 @@ class Movie extends Model
             }]);
     }
 
-    public function genres(){
+    public function scopeIncludeMovieWatched($query)
+    {
+        return $query->with(['watchList' => function ($query){
+            $query->where('user_id',Auth::id());
+        }]);
+    }
+
+    public function genres()
+    {
         return $this->belongsToMany(Genre::class);
     }
 
-    public function reactions(){
+    public function reactions()
+    {
         return $this->hasMany(Reaction::class);
     }
 
-    public function comments(){
+    public function comments()
+    {
         return $this->hasMany(Comment::class);
+    }
+
+    public function watchList()
+    {
+        return $this->hasMany(WatchList::class);
     }
 }
