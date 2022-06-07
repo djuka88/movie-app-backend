@@ -23,6 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('/movies/popular',[MovieController::class, 'popular']);
 Route::get('movies/{id}',[MovieController::class, 'show']);
 Route::get('movies',[MovieController::class, 'index']);
 Route::post('movies',[MovieController::class, 'store']);

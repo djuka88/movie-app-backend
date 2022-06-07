@@ -135,5 +135,18 @@ class MovieController extends Controller
 
         return $comments;
     }
-    
+
+    public function popular()
+    {
+        $movies = Movie::select('id','title')
+            ->withCount(['reactions as likesCount' => function($query){
+                $query->where('like',1);
+            }])
+            ->orderBy('likesCount','DESC')
+            ->orderBy('title','ASC')
+            ->take(10)
+            ->get();
+        
+        return $movies;
+    }
 }
